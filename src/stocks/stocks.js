@@ -15,7 +15,7 @@ class Stocks extends Component {
     render(){
         console.log(StocksApi.Stocks.byName(this.state.stockName))
         return(
-            <div>
+            <div class="stock-box">
                 Nome da Ação: {this.state.stockName}
             </div>
         );
