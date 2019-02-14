@@ -13,7 +13,21 @@ code {
     monospace;
 }
 
+.App{
+
+
+}
+
+.stock-title {
+  text-align: center;
+}
+
+.stock-text {
+  font-size: 0.8em
+}
 .stock-box {
+  text-align: left;
+  padding: 20px;
   background-color: whitesmoke;
   color: black;
 }

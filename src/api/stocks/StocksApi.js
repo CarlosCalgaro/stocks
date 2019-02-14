@@ -9,6 +9,11 @@ var StocksApi = {
         byName: (name) => {
             let url = StocksApi.API.baseUrl + 'stock/' + name + '/company';
             return fetch(url).then(response => response.json());
+        },
+
+        getPrice: (symbol) => {
+            let url = StocksApi.API.baseUrl + "stock/" + symbol + "/price";
+            return fetch(url).then(response => response.json());
         }
     }
 };
