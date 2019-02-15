@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StocksApi from '../api/stocks/StocksApi';
 import Card from 'react-bootstrap/Card';
+import moment from 'moment';
 
 
 class Stocks extends Component {
@@ -13,27 +14,31 @@ class Stocks extends Component {
             stockSymbol: this.props.stockSymbol, 
             stockPrice:  0,
             ceo: "",
-            timer: Date.now()
+            timer: moment(),
         };
-        this.setData();
+        var self = this;
+        this.tick = this.tick.bind(this);
+        this.refreshData = this.refreshData.bind(this);
+        this.parseTimer = this.parseTimer.bind(this);
+        this.refreshData();
+    }
+
+    tick(){
+        this.refreshData();
+        this.setState({
+            timer: moment()
+        })
+    }
+
+    parseTimer(){
+        return this.state.timer.format("DD/MM/YYYY h:mm:ss");
     }
 
     componentDidMount() {
-        let self = this;
-        this.timerID = setInterval(
-          
-          () => {
-            self.setState(
-                {
-                    timer: Date.now()
-                }
-            )
-          },
-          1000
-        );
-    }
-
-    setData = function(){
+            setInterval( this.tick(), 10000)
+     }
+    
+    refreshData(){
         StocksApi.Stocks.getPrice(this.state.stockSymbol).then( (response) => {
             this.setState({
                 stockPrice: response
@@ -45,10 +50,11 @@ class Stocks extends Component {
                 ceo: response.CEO
             });
         });
+        
     };
 
     render(){
-        var self = this;
+       
         return(
             <Card className="stock-box">
                 <Card.Body>
@@ -59,8 +65,7 @@ class Stocks extends Component {
                         <br></br>
                         Ceo: {this.state.ceo}
                         <br></br>
-                        <small className="text-muted">Last updated: {this.state.timer.toLocaleString()}</small>
-               
+                        <small className="text-muted">Last updated: {this.parseTimer()}</small>
                     </Card.Text>
                 </Card.Body>
             </Card>
