@@ -5,7 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Title from './stocks/layout/title';
 import Row from 'react-bootstrap/Row';
 import logo from './logo.svg';
-import StockForm from './stocks/StockForm'
+import StockForm from './stocks/StockForm';
+import StockManager from './stocks/StockManager';
 import './App.css';
 
 class App extends Component {
@@ -30,19 +31,8 @@ class App extends Component {
         </Container>
 
         <Container>
-            <Row>
-              <Col md={4}>
-                <Stocks stockSymbol="AAPL"></Stocks>
-              </Col>
-              <Col md={4}>
-                <Stocks stockSymbol="GOOGL"></Stocks>
-              </Col>
-              <Col md={4}>
-                <Stocks stockSymbol="MSFT"></Stocks>
-              </Col>
-
-            </Row>
-          </Container>
+          <StockManager></StockManager>
+        </Container>
       </div>
     );
   }
