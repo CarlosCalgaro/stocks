@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Stocks from './stocks/stocks.js';
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Title from './stocks/layout/title';
+import Row from 'react-bootstrap/Row';
 import logo from './logo.svg';
 
 import './App.css';
@@ -19,7 +20,13 @@ class App extends Component {
     return (
       
       <div className="App">
-
+        <Container>
+          <Row className="text-center">
+            <Col sm={12}>
+              <Title></Title>
+            </Col>
+          </Row>
+        </Container>
         <Container>
             <Row>
               <Col md={4}>
